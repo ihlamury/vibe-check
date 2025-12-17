@@ -1,8 +1,7 @@
-<p align="center">
-  <img src="assets/vibe-check-logo.png" alt="Vibe Check" width="40" />
-</p>
-
-<h1 align="center">Vibe Check</h1>
+<h1 align="center">
+  <img src="assets/vibe-check-logo.png" alt="Vibe Check" width="36" style="vertical-align: middle;" />
+  Vibe Check
+</h1>
 
 <p align="center">
   <strong>Design system observability for AI-native development</strong>
