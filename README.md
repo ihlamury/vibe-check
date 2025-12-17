@@ -51,7 +51,7 @@ The AI doesn't know your design system. It just generates *something that works*
 
 ### Install
 ```bash
-pip install vibe-check
+pip install vibe-checkr
 ```
 
 ### Check Your Codebase
