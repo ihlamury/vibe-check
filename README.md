@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/vibe-check-logo.png" alt="Vibe Check" width="36" style="vertical-align: middle;" />
+  <img src="assets/vibe-check-logo.svg" alt="Vibe Check" width="36" style="vertical-align: middle;" />
   Vibe Check
 </h1>
 
