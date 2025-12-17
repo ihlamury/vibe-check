@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/vibe-checkr/"><img src="https://img.shields.io/pypi/v/vibe-check?color=blue" alt="PyPI"></a>
-  <a href="https://pypi.org/project/vibe-checkr/"><img src="https://img.shields.io/pypi/dm/vibe-check" alt="Downloads"></a>
+  <a href="https://pypi.org/project/vibe-checkr/"><img src="https://img.shields.io/pypi/v/vibe-check?color=blue&v=1" alt="PyPI"></a>
+  <a href="https://pypi.org/project/vibe-checkr/"><img src="https://img.shields.io/pypi/dm/vibe-check&v=1" alt="Downloads"></a>
   <a href="https://github.com/ihlamury/vibe-check/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
 </p>
 
