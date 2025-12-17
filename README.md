@@ -4,22 +4,20 @@
 </h1>
 
 <p align="center">
-  <strong>Design system observability for AI-native development</strong>
+  <strong>Stop design drift when vibe coding with AI</strong>
 </p>
 
 <p align="center">
   <a href="https://pypi.org/project/vibe-check/"><img src="https://img.shields.io/pypi/v/vibe-check?color=blue" alt="PyPI"></a>
   <a href="https://pypi.org/project/vibe-check/"><img src="https://img.shields.io/pypi/dm/vibe-check" alt="Downloads"></a>
   <a href="https://github.com/ihlamury/vibe-check/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
-  <a href="https://github.com/ihlamury/vibe-check/actions"><img src="https://img.shields.io/github/actions/workflow/status/ihlamury/vibe-check/ci.yml?branch=main" alt="CI"></a>
 </p>
 
 <p align="center">
   <a href="#the-problem">Problem</a> •
-  <a href="#the-solution">Solution</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#features">Features</a> •
-  <a href="#how-it-works">How It Works</a> •
+  <a href="#ai-integration">AI Integration</a> •
   <a href="#roadmap">Roadmap</a>
 </p>
 
@@ -36,12 +34,11 @@
 You're **vibe coding** with Cursor, Claude, or Copilot. Shipping fast. Feels great.
 
 But by the 5th feature, your codebase looks like this:
-
 ```jsx
 // File 1: p-4, rounded-lg, bg-blue-500
 // File 2: p-3, rounded-xl, bg-[#3b82f6]
 // File 3: p-5, rounded-md, bg-blue-600
-// File 4: padding: 18px, border-radius: 10px, background: #2563eb
+// File 4: padding: 18px, border-radius: 10px
 ```
 
 **No consistent spacing. Random colors. Mixed border radius. Design chaos.**
@@ -50,68 +47,20 @@ The AI doesn't know your design system. It just generates *something that works*
 
 ---
 
-## The Solution
-
-**Vibe Check** scans your codebase, locks your design system, and teaches your AI tools to follow it.
-
-```bash
-# One command to rule them all
-vibe init ./src
-```
-
-That's it. Your AI tools now understand your design system.
-
----
-
 ## Quick Start
 
 ### Install
-
 ```bash
 pip install vibe-check
 ```
 
-### Initialize
-
+### Check Your Codebase
 ```bash
-cd your-react-project
-vibe init ./src
+cd your-project
+vibe check
 ```
 
-This will:
-1. 🔍 Scan your codebase for design tokens
-2. 🔒 Lock your design system to `.vibe/system.json`
-3. 📝 Generate `.cursorrules` and `CLAUDE.md`
-4. 🔌 Configure MCP server for Claude Desktop & Claude Code
-
-### Check (anytime)
-
-```bash
-vibe check ./src
-```
-
-See what's drifting from your design system.
-
----
-
-## Features
-
-### 🔍 Design System Scanner
-
-Extracts design tokens from your codebase:
-
-| Category | What It Finds |
-|----------|---------------|
-| **Spacing** | `p-4`, `m-2`, `gap-6`, `px-[10px]` |
-| **Colors** | `bg-blue-500`, `text-gray-900`, `bg-[#ff6b6b]` |
-| **Typography** | `text-xl`, `font-bold`, `font-[Comic_Sans]` |
-| **Border Radius** | `rounded-lg`, `rounded-[8px]` |
-| **Shadows** | `shadow-md`, `shadow-[0_4px_6px_rgba(0,0,0,0.1)]` |
-
-### 🚨 Issue Detection
-
-Finds inconsistencies with clear severity levels:
-
+See what's drifting:
 ```
 🔴 ERRORS — Must fix
   1. colors: Replace arbitrary color `bg-[#ff6b6b]` with a theme color
@@ -121,15 +70,44 @@ Finds inconsistencies with clear severity levels:
   1. border-radius: Reduce from 4 values to 2-3
 
 🔵 SUGGESTIONS — Consider fixing
-  1. colors: Consolidate 6 one-off colors (used only 1-2x)
+  1. colors: Consolidate 6 one-off colors
 
 Summary: 2 errors · 1 warning · 1 suggestion
 ```
 
-### 🔒 Design System Lock
+### Lock & Teach Your AI
+
+Once you've fixed the errors, lock your design system:
+```bash
+vibe init
+```
+
+This will:
+1. 🔒 Lock your design system to `.vibe/system.json`
+2. 📝 Generate `.cursorrules` and `CLAUDE.md`
+3. 🔌 Configure MCP server for Claude
+
+**That's it.** Your AI tools now follow your design system.
+
+---
+
+## Features
+
+### 🔍 Scanner
+
+Extracts design tokens from your Tailwind + CSS codebase:
+
+| Category | What It Finds |
+|----------|---------------|
+| **Spacing** | `p-4`, `m-2`, `gap-6`, `px-[10px]` |
+| **Colors** | `bg-blue-500`, `text-gray-900`, `bg-[#ff6b6b]` |
+| **Typography** | `text-xl`, `font-bold`, `font-[Comic_Sans]` |
+| **Border Radius** | `rounded-lg`, `rounded-[8px]` |
+| **Shadows** | `shadow-md`, `shadow-[0_4px_6px_rgba(0,0,0,0.1)]` |
+
+### 🔒 Lock File
 
 Generates `.vibe/system.json` — your source of truth:
-
 ```json
 {
   "spacing": { "scale": [0, 2, 4, 6, 8, 12, 16] },
@@ -138,7 +116,7 @@ Generates `.vibe/system.json` — your source of truth:
     { "name": "neutral", "value": "gray-600" }
   ],
   "typography": {
-    "font_sizes": ["sm", "base", "lg", "xl", "2xl"],
+    "font_sizes": ["sm", "base", "lg", "xl"],
     "font_weights": ["normal", "medium", "bold"]
   },
   "border_radius": { "scale": ["md", "lg", "full"] },
@@ -146,27 +124,17 @@ Generates `.vibe/system.json` — your source of truth:
 }
 ```
 
-### 🤖 AI Tool Integration
+---
 
-Works with all major AI coding tools:
+## AI Integration
 
-| Tool | Integration | How |
-|------|-------------|-----|
-| **Cursor** | `.cursorrules` | Auto-read by Cursor |
-| **Claude Code** | `CLAUDE.md` + MCP | Auto-read + live tools |
-| **Claude Desktop** | MCP Server | Live design system queries |
+### Cursor
 
-### 🔌 MCP Server
+Reads `.cursorrules` automatically. No setup needed.
 
-Gives AI tools **live access** to your design system:
+### Claude Code
 
-| Tool | Description |
-|------|-------------|
-| `get_design_system` | Returns full design system |
-| `validate_styles` | Checks if styles are valid |
-| `suggest_fix` | Suggests correct value for invalid style |
-
-**Example conversation:**
+Reads `CLAUDE.md` automatically + connects via MCP for live queries:
 ```
 You: Create a Card component
 Claude: [uses get_design_system tool]
@@ -174,31 +142,11 @@ Claude: Here's a Card using your design system:
         - bg-white (from your palette)
         - p-4 (from your spacing scale)
         - rounded-lg (from your border radius)
-        - shadow-md (from your shadows)
 ```
 
----
+### Claude Desktop
 
-## How It Works
-
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Scanner   │ ──▶ │  Analyzer   │ ──▶ │    Lock     │
-│             │     │             │     │             │
-│ • Files     │     │ • Spacing   │     │ • JSON      │
-│ • Tailwind  │     │ • Colors    │     │ • Rules     │
-│ • CSS       │     │ • Typography│     │ • MCP       │
-└─────────────┘     └─────────────┘     └─────────────┘
-                                               │
-                    ┌──────────────────────────┼──────────────────────────┐
-                    │                          │                          │
-                    ▼                          ▼                          ▼
-            ┌─────────────┐            ┌─────────────┐            ┌─────────────┐
-            │   Cursor    │            │ Claude Code │            │Claude Desktop│
-            │ .cursorrules│            │  CLAUDE.md  │            │  MCP Server │
-            └─────────────┘            │  MCP Server │            └─────────────┘
-                                       └─────────────┘
-```
+Connects via MCP server. Ask Claude to validate styles or suggest fixes.
 
 ---
 
@@ -206,94 +154,59 @@ Claude: Here's a Card using your design system:
 
 | Command | Description |
 |---------|-------------|
-| `vibe init [path]` | Full setup: scan → lock → configure AI tools |
-| `vibe check [path]` | Scan for inconsistencies (CI/CD friendly) |
-| `vibe lock [path]` | Lock design system to `.vibe/system.json` |
-| `vibe serve` | Start MCP server (usually auto-started) |
+| `vibe check` | Scan for design inconsistencies |
+| `vibe init` | Lock design system + configure AI tools |
+| `vibe lock` | Lock design system only |
+| `vibe serve` | Start MCP server manually |
 
 ### Options
-
 ```bash
-vibe init ./src              # Full setup
-vibe init ./src -y           # Skip prompts
-vibe init ./src --skip-mcp   # Skip MCP configuration
-vibe init ./src --skip-rules # Skip .cursorrules and CLAUDE.md
+vibe check              # Scan current directory
+vibe check ./src        # Scan specific path
+vibe check -v           # Verbose output
+vibe check -o json      # JSON output (for CI)
 
-vibe check ./src             # Console output
-vibe check ./src -v          # Verbose output
-vibe check ./src -o json     # JSON output (for CI)
-vibe check ./src -o markdown # Markdown output
+vibe init               # Full setup
+vibe init -y            # Skip prompts
+vibe init --skip-mcp    # Skip MCP configuration
 ```
 
 ---
 
-## Supported Technologies
+## Supported Tech
 
-### Frameworks
-- ✅ React / Next.js
-- ✅ Vue / Nuxt
-- ✅ Svelte / SvelteKit
-- ✅ Plain HTML
+**Frameworks:** React, Next.js, Vue, Nuxt, Svelte, plain HTML
 
-### Styling
-- ✅ Tailwind CSS (primary)
-- ✅ Vanilla CSS
-- ✅ SCSS
+**Styling:** Tailwind CSS, vanilla CSS, SCSS
 
-### AI Tools
-- ✅ Cursor
-- ✅ Claude Code
-- ✅ Claude Desktop
-- 🔜 GitHub Copilot
-- 🔜 Windsurf
+**AI Tools:** Cursor, Claude Code, Claude Desktop
 
 ---
 
 ## Roadmap
 
-### v1.0 (Current)
+### Now
 - [x] CLI scanner for Tailwind + CSS
-- [x] Design system lock (`.vibe/system.json`)
-- [x] Issue detection with severity levels
-- [x] `.cursorrules` generation
-- [x] `CLAUDE.md` generation
-- [x] MCP server for Claude Desktop & Claude Code
+- [x] Design system lock
+- [x] `.cursorrules` + `CLAUDE.md` generation
+- [x] MCP server for Claude
 
-### v1.1
-- [ ] `tailwind.config.js` generation
-- [ ] CSS variables output
-- [ ] Ignore patterns (`.vibeignore`)
-- [ ] Config file (`.vibeconfig.json`)
-
-### v2.0
+### Next
+- [ ] `tailwind.config.js` export
 - [ ] GitHub Action for PR checks
-- [ ] VS Code extension
-- [ ] Web dashboard
-- [ ] Team sharing
-
-### v3.0
-- [ ] Figma plugin (import design system)
-- [ ] Design drift tracking over time
-- [ ] Component usage analytics
+- [ ] Figma plugin
 
 ---
 
 ## Contributing
-
-Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md) first.
-
 ```bash
-# Setup development environment
 git clone https://github.com/ihlamury/vibe-check.git
 cd vibe-check
 pip install -e ".[dev]"
-
-# Run tests
 pytest
-
-# Run linter
-ruff check .
 ```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ---
 
@@ -309,5 +222,5 @@ MIT © [Yagiz Ihlamur](https://github.com/ihlamury)
 
 <p align="center">
   <a href="https://github.com/ihlamury/vibe-check">⭐ Star on GitHub</a> •
-  <a href="https://twitter.com/yagizihlamur">🐦 Follow on Twitter</a>
+  <a href="https://x.com/yagizihlamur">𝕏 Follow</a>
 </p>
