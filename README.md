@@ -1,4 +1,7 @@
-<p align="center">   <img src="assets/vibe-check-logo.svg" alt="Vibe Check" width="200" /> </p>
+<p align="center">
+  <img src="assets/vibe-check-logo.png" alt="Vibe Check" width="160" />
+</p>
+
 <h1 align="center">Vibe Check</h1>
 
 <p align="center">
@@ -262,6 +265,17 @@ vibe check ./src -o markdown # Markdown output
 - [ ] CSS variables output
 - [ ] Ignore patterns (`.vibeignore`)
 - [ ] Config file (`.vibeconfig.json`)
+
+### v2.0
+- [ ] GitHub Action for PR checks
+- [ ] VS Code extension
+- [ ] Web dashboard
+- [ ] Team sharing
+
+### v3.0
+- [ ] Figma plugin (import design system)
+- [ ] Design drift tracking over time
+- [ ] Component usage analytics
 
 ---
 
