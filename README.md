@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="#the-problem">Problem</a> •
+  <a href="#the-problem">The Problem</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#features">Features</a> •
   <a href="#ai-integration">AI Integration</a> •
