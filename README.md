@@ -266,17 +266,6 @@ vibe check ./src -o markdown # Markdown output
 - [ ] Ignore patterns (`.vibeignore`)
 - [ ] Config file (`.vibeconfig.json`)
 
-### v2.0
-- [ ] GitHub Action for PR checks
-- [ ] VS Code extension
-- [ ] Web dashboard
-- [ ] Team sharing
-
-### v3.0
-- [ ] Figma plugin (import design system)
-- [ ] Design drift tracking over time
-- [ ] Component usage analytics
-
 ---
 
 ## Contributing
